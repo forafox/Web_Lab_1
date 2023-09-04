@@ -21,7 +21,8 @@ function update() {
         if (checkInput(xVal)) {
             $.ajax({
                 type: 'POST',
-                url: 'main.php',
+                url: '../public_html/php/main.php',
+                // url: '../main.php',
                 async: false,
                 data: { "x": xVal, "y": yVal, "r": rVal },
                 success: function (data) {
