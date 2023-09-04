@@ -10,14 +10,15 @@ function check_coords($x, $y, $r)
     if ($x <= 0 && $y <= 0) {
         return $x >= -($r / 2) && $y >= -$r;
     }
-    // 4 четверть
-    if ($x >= 0 && $y <= 0) {
-        return TRUE;
-    }
-    // 1 четверть
+
     if ($x >= 0 && $y >= 0) {
         return $x * $x + $y * $y <= $r * $r;
     }
+    // 4 четверть
+    if ($x >= 0 && $y <= 0) {
+        return checkTriangle($x, $y, $r);
+    }
+    // 1 четверть
     return false;
 }
 
@@ -50,3 +51,16 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
 } else {
     exit("1");
 }
+
+function checkTriangle($x, $y, $r)
+{
+    $a1 = ($r - $x) * (-$r - 0) - (0 - $r) * (0 - $y);
+    $a2 = (0 - $x) * (0 + $r) - (0 - 0) * (-$r - $y);
+    $a3 = (0 - $x) * (0 - 0) - ($r - 0) * (0 - $y);
+    if (($a1 >= 0 && $a2 >= 0 && $a3 >= 0) || ($a1 <= 0 && $a2 <= 0 && $a3 <= 0)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+;

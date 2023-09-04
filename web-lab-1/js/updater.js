@@ -1,35 +1,38 @@
 let count = true;
-var rVal = 0;
-var xVal = 0;
-var yVal = 0;
+let rVal = 0;
+let xVal = 0;
+let yVal = 0;
 
 
-function update() {
-    let buttonList = document.querySelectorAll("button");
-    buttonList.forEach(function (i) {
+function addYButtonsEventListeners() {
+    document.querySelectorAll("button").forEach(function (i) {
         i.addEventListener("click", function (e) {
             yVal = e.target.innerHTML;
         })
+        console.log("Added event listener to button with text", i.innerText)
     })
+}
+
+
+function update() {
 
     xVal = document.getElementById('x').value;
     rVal = $('.messageCheckBox:checked').val();
 
     console.log(xVal, yVal, rVal);
     if (xVal == 0 || xVal == null || yVal == 0 || yVal == null || rVal != 0 || rVal == null) {
-        
-        if (checkInput(xVal)) {
+
+        if (checkInput(xVal,yVal,rVal)) {
             $.ajax({
                 type: 'POST',
-                url: '../public_html/php/main.php',
+                url: '../web_1/php/main.php',
                 // url: '../main.php',
                 async: false,
                 data: { "x": xVal, "y": yVal, "r": rVal },
                 success: function (data) {
                     $('#results tr:last').after(data);
-                    let prev = localStorage.getItem("result");
-                    prev = prev + "\n" + data;
-                    localStorage.setItem("result", prev);
+                    console.log(rVal, xVal, yVal);  
+                    draw(rVal, xVal, yVal);
                 },
                 error: function (xhr, textStatus, err) {
                     alert("readyState: " + xhr.readyState + "\n" +
@@ -44,9 +47,13 @@ function update() {
 
 }
 
+
 // function onetime(){
 //     if(count){
 //         $('#results tr:last').after(localStorage.getItem("result"));
 //         count = false;
 //     }
 // }
+
+
+addYButtonsEventListeners()
