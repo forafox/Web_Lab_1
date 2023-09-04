@@ -168,7 +168,16 @@ p {
     transition: opacity 0.7s;
 }
 
+.validationInfo.show {
+    opacity: 1;
+    transition: opacity 0.7s;
+}
+
 th#heading {
     font-weight: bold;
     font-size: large;
+}
+
+.active{
+    background-color: red;
 }
