@@ -2,6 +2,7 @@ let count = true;
 let rVal = 0;
 let xVal = 0;
 let yVal = 0;
+let flag =false;
 
 
 function addYButtonsEventListeners() {
@@ -15,7 +16,6 @@ function addYButtonsEventListeners() {
 
 
 function update() {
-
     xVal = document.getElementById('x').value;
     rVal = $('.messageCheckBox:checked').val();
 
@@ -23,16 +23,24 @@ function update() {
     if (xVal == 0 || xVal == null || yVal == 0 || yVal == null || rVal != 0 || rVal == null) {
 
         if (checkInput(xVal,yVal,rVal)) {
+            console.log("POST");
             $.ajax({
                 type: 'POST',
                 url: '../web_1/php/main.php',
                 // url: '../main.php',
                 async: false,
+                dataType:"JSON",
+                success:function(response){
+                        flag=response[0];
+                        $('#results tr:last').after(response[1]);
+                },
                 data: { "x": xVal, "y": yVal, "r": rVal },
                 success: function (data) {
-                    $('#results tr:last').after(data);
-                    console.log(rVal, xVal, yVal);  
-                    draw(rVal, xVal, yVal);
+                    const arr=data;
+                    console.log(arr.flag);
+                    $('#results tr:last').after(arr.data);
+                    flag=arr.flag;
+                    draw(rVal, xVal, yVal, flag);
                 },
                 error: function (xhr, textStatus, err) {
                     alert("readyState: " + xhr.readyState + "\n" +
@@ -46,14 +54,5 @@ function update() {
     }
 
 }
-
-
-// function onetime(){
-//     if(count){
-//         $('#results tr:last').after(localStorage.getItem("result"));
-//         count = false;
-//     }
-// }
-
 
 addYButtonsEventListeners()

@@ -4,6 +4,8 @@ include 'validator.php';
 header('Access-Control-Allow-Origin: *');
 date_default_timezone_set('Europe/Moscow');
 
+$data=json_encode(array('flag'=>true));
+
 function check_coords($x, $y, $r)
 {
     // 3 четверть
@@ -25,31 +27,39 @@ function check_coords($x, $y, $r)
 $current_time = date("H:i:s");
 $starting_time = microtime(true);
 
+
+
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
     $validator = new Validator;
+
     if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
         $x = intval($_POST["x"]);
         $y = floatval($_POST["y"]);
         $r = intval($_POST["r"]);
 
         $checked_dot = check_coords($x, $y, $r) ? "попадание!" : "промах!";
+        $flagg=check_coords($x,$y,$r) ? "true" : "false";
 
         $finish_time = round((microtime(true) - $starting_time) * 1000000, 2);
+        
 
-        exit("
-            <tr>
-                <td width='10%'>$x</td>
-                <td width='10%'>$y</td>
-                <td width='10%'>$r</td>
-                <td width='20%'>$current_time</td>
-                <td width='30%'>$finish_time</td>
-                <td width='40%'>$checked_dot</td>
-            </tr> ");
+       
+        $data=array("flag"=>$flagg,"data"=>"
+        <tr>
+            <td width='10%'>$x</td>
+            <td width='10%'>$y</td>
+            <td width='10%'>$r</td>
+            <td width='20%'>$current_time</td>
+            <td width='30%'>$finish_time</td>
+            <td width='40%'>$checked_dot</td>
+        </tr> ");
+
+        echo json_encode($data);
     } else {
         exit("<tr><td colspan=6 id='error'>Серверу переданы неверные данные! Проверьте, что все данные введены!</td></tr>");
     }
 } else {
-    exit("1");
+    exit(1);
 }
 
 function checkTriangle($x, $y, $r)
@@ -64,3 +74,5 @@ function checkTriangle($x, $y, $r)
     }
 }
 ;
+
+?>

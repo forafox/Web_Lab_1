@@ -12,26 +12,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- <script>
-    $(document).ready ( function(){
-      onetime();
-    });
-</script> -->
-
-<script>
-    // When the user clicks on <span> (x), close the modal
-    // span.onclick = function() {
-    //     modal.style.display = "none";
-    // }
-
-    // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    // }
-// } 
-</script>
-
 <header>
     Карабанов Андрей Фёдорович, Р3115, Вариант 2510
 </header>
@@ -65,17 +45,16 @@
                     </ol>
                     <h3>Ссылки</h3>
                     <ul>
-                        <li><a class="pointer" href="https://github.com/forafox">Исходный код</a></li>
+                        <li><a class="pointer" href="https://github.com/forafox/Web_Lab_1">Исходный код</a></li>
                     </ul>
             </td>
             <td id="data" width="40%">
-
-                <form method="POST" novalidate onsubmit="update(); return false">
 
                 <div>
                     <label for='x'>
                         Введите X: значение из интервала(-3; 5):
                     </label>
+                    <br>
                     <input class='x-text' id='x' name='X' type='text' maxlength='14' oninput='validateTextField()' required>
                 </div>
 
@@ -124,10 +103,10 @@
                 <label for='check'>
                     Для того, чтобы провреить попадание заданной точки, нажмите кнопку ниже
                 </label>
-                <input class='pointer' id="check" name="check" type="submit" value="Проверить">
+                <!-- <input class='pointer' id="check" name="check" type="submit" value="Проверить"> -->
             </td>
 
-        </form>
+        
 
             <td id="area" width="30%">
                 <section id="coordinate-system">
@@ -139,7 +118,10 @@
         </tr>
         <tr>
             <td  colspan="3">
-                <input class='pointer' id='clear' type='button' value='Очистить таблицу' onclick='clearTable()'>                        
+                <form method="POST" novalidate onsubmit="update(); return false">
+                <input class='pointer' id="check" name="check" type="submit" value="Проверить">
+                <input class='pointer' id='clear' type='button' value='Очистить таблицу' onclick='clearTable()'> 
+            </form>                       
             </td>
         </tr>
         <tr>
@@ -156,6 +138,8 @@
                 </table>
             </td>
         </tr>
+
+        <!-- <button class="small-button" onclick="play('/media/sounds/1_4z1fBqw.mp3', 'loader-81238', 'nepravilno-poprobui-eshchio-ra')" title="Воспроизвести звук Неправильно, попробуй ещё раз!" type="button"></button> -->
         
     </table>
 
