@@ -4,7 +4,7 @@
 
 Red point             |  Blue point
 :-------------------------:|:-------------------------:
-![](https://github.com/forafox/Web_Lab_1/imageForTitle/TitleImageWithRedPoint.png)  |  (https://github.com/forafox/Web_Lab_1/imageForTitle/TitleImageWithRedPoint.png) 
+![](https://github.com/forafox/Web_Lab_1/blob/master/imageForTitle/TitleImageWithRedPoint.png)  |  ![](https://github.com/forafox/Web_Lab_1/blob/master/imageForTitle/TitleImageWithBluePoint.png) 
 
 ## Содержание проекта 
 
