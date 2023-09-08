@@ -7,6 +7,4 @@ function clearTable() {
         <th width="30%">Время работы скрипта</th>
         <th width="40%">Результат</th>
     </tr> `);
-
-    // localStorage.clear();
 }

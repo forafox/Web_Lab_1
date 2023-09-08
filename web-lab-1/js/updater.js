@@ -1,4 +1,3 @@
-// import { draw } from './render/render.js';
 let count = true;
 let rVal = 0;
 let xVal = 0;
@@ -11,7 +10,6 @@ function addYButtonsEventListeners() {
         i.addEventListener("click", function (e) {
             yVal = e.target.innerHTML;
         })
-        console.log("Added event listener to button with text", i.innerText)
     })
 }
 
@@ -19,16 +17,13 @@ function addYButtonsEventListeners() {
 function update() {
     xVal = document.getElementById('x').value;
     rVal = $('.messageCheckBox:checked').val();
-
-    console.log(xVal, yVal, rVal);
+    
     if (xVal == 0 || xVal == null || yVal == 0 || yVal == null || rVal != 0 || rVal == null) {
 
         if (checkInput(xVal,yVal,rVal)) {
-            console.log("POST");
             $.ajax({
                 type: 'POST',
                 url: '../web_1/php/main.php',
-                // url: '../main.php',
                 async: false,
                 dataType:"JSON",
                 success:function(response){

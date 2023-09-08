@@ -23,7 +23,6 @@ function checkInput(x,y,r) {
     }
 
     validationInfoPanel.innerHTML = validationInfo;
-    //validationInfoPanel.textContent = validationInfo;
     validationInfoPanel.classList.add("show");
 
 

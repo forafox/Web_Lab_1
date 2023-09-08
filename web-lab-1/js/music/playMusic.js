@@ -1,6 +1,3 @@
-// import sound from './error.mp3';
-
-
 function playMusic(flag){
     console.log(flag);
     if(flag==='true'){
@@ -13,8 +10,5 @@ function playMusic(flag){
 }
 
 document.addEventListener("playMusic",function(event){
-    console.log("GOTCHA BITCH!!");
     playMusic(event.flag);
 });
-
-console.log("Music event listener added")
