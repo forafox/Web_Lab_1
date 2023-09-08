@@ -1,3 +1,4 @@
+// import { draw } from './render/render.js';
 let count = true;
 let rVal = 0;
 let xVal = 0;
@@ -37,7 +38,6 @@ function update() {
                 data: { "x": xVal, "y": yVal, "r": rVal },
                 success: function (data) {
                     const arr=data;
-                    console.log(arr.flag);
                     $('#results tr:last').after(arr.data);
                     flag=arr.flag;
                     draw(rVal, xVal, yVal, flag);

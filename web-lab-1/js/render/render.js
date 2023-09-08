@@ -1,11 +1,8 @@
-// import sound from '../music/error.mp3';
-
 const canvas = document.getElementById("canvas");
 
 
 
-function draw(r, pointxVal, pointyVal,flag) {
-    console.log("DRAW FLAG",flag);
+function draw(r, pointxVal, pointyVal, flag) {
     if (canvas.getContext) {
         const ctx = canvas.getContext("2d");
         const size = 300; /////////////????
@@ -18,12 +15,18 @@ function draw(r, pointxVal, pointyVal,flag) {
         drawPolygon(ctx, size, r);
         drawAxes(ctx, size);
         drawText(ctx, size, r);
-        
-        console.log(pointxVal,pointyVal,flag);
 
         if (pointxVal && pointyVal) {
-            drawPoint(ctx, size, pointxVal, pointyVal,flag)
-            playMusic(flag);
+            drawPoint(ctx, size, pointxVal, pointyVal, flag)
+            // playMusic(flag);
+            console.log(`${flag}`)
+            let event = new MouseEvent("playMusic", {
+                // flag: `${flag}`
+            });
+            event.flag=`${flag}`;
+            console.log(event.flag," music event")
+            document.dispatchEvent(event);
+            console.log("Dispatched music event")
         }
 
     } else {
@@ -78,11 +81,11 @@ function draw(r, pointxVal, pointyVal,flag) {
 
     }
 
-    function drawPoint(ctx, size, xVal, yVal,flag) {
-        if(flag==='true'){
-            ctx.fillStyle="Blue";
-        }else {
-            ctx.fillStyle="red";  
+    function drawPoint(ctx, size, xVal, yVal, flag) {
+        if (flag === 'true') {
+            ctx.fillStyle = "Blue";
+        } else {
+            ctx.fillStyle = "red";
         }
         let totalPoints = 12;
         let pointInPixels = size / totalPoints
@@ -90,16 +93,6 @@ function draw(r, pointxVal, pointyVal,flag) {
         ctx.arc(size / 2 + pointInPixels * xVal, size / 2 - yVal * pointInPixels, 5, 0, Math.PI * 2)
         ctx.fill();
         return true;
-    }
-
-    function playMusic(flag){
-        if(flag==='true'){
-             //audio = new Audio(required('./error.mp3'));
-            // audio.play();
-        }else{
-             //audio = new Audio(required('./error.mp3'));
-             //audio.play();
-        }
     }
 }
 

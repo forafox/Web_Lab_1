@@ -18,8 +18,7 @@ function checkInput(x,y,r) {
     else validationInfo += "<span class='popup-content-span' onclick='spanOnClick()'>Введите x!</span>";
 
     if(r==0 || r==undefined){
-        console.log("ALARM R=0");
-        validationInfo+="<span class='popup-content-span'>Введите r!</span>";
+        validationInfo+="<span class='popup-content-span'>Введите R!</span>";
         isXCorrect=false;
     }
 
